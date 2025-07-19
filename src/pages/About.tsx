@@ -38,56 +38,47 @@ const About = () => {
 
   const team = [
     {
-      name: 'John Smith',
+      name: 'Peyyala satish chandra',
       role: 'CEO & Founder',
-      description: 'Full-stack developer with 10+ years experience in building scalable solutions.',
-      image: '/api/placeholder/300/300'
+      image: 'https://media.licdn.com/dms/image/v2/D5603AQHEAJzmtbsIQQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1722711320674?e=1758153600&v=beta&t=ASv1XrEXHO02Hzj5GjYrD1Vzyj6I5-hN4xPIlzWsNu0'
     },
     {
-      name: 'Sarah Johnson',
-      role: 'Lead Designer',
-      description: 'Creative director specializing in user experience and interface design.',
-      image: '/api/placeholder/300/300'
+      name: 'Lalitha Devaraya',
+      role: 'HR & project manager',
+      image: 'https://media.licdn.com/dms/image/v2/D4D03AQG5ueQzvytoww/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1725954059196?e=1758153600&v=beta&t=1qsGsGOGaMuGlnfbQus-znb1doefJJNHPgHMxGw-Unc'
     },
     {
-      name: 'Mike Chen',
-      role: 'Senior Developer',
-      description: 'Expert in mobile app development and cloud infrastructure.',
-      image: '/api/placeholder/300/300'
+      name: 'Nimmagadda Abhishek',
+      role: 'Developer',
+      image: 'https://media.licdn.com/dms/image/v2/D5603AQHLkiML0bYOug/profile-displayphoto-crop_800_800/B56ZgPBnBNGUAQ-/0/1752598739464?e=1758153600&v=beta&t=jA6dr6CrORIEnV19lAmKrD1whNKCUmCNDxZty1bF3hQ'
     },
     {
-      name: 'Emily Davis',
-      role: 'Marketing Director',
-      description: 'Digital marketing strategist with expertise in growth hacking.',
-      image: '/api/placeholder/300/300'
+      name: 'Prudhvi Rao',
+      role: 'General Manager',
+      image: 'https://ik.imagekit.io/ya7vx4agl/New%20Folder/WhatsApp%20Image%202025-07-15%20at%2022.22.39_7d40c113.jpg?updatedAt=1752599277384'
+    },
+    {
+      name: 'Siddhu',
+      role: 'Managing Director',
+      image: 'https://ik.imagekit.io/ya7vx4agl/New%20Folder/cropped_circle_image.png?updatedAt=1752604967530'
     }
   ];
 
   const milestones = [
     {
-      year: '2019',
+      year: '2025',
       title: 'Company Founded',
       description: 'Started with a vision to help businesses succeed digitally'
     },
     {
-      year: '2020',
-      title: '100+ Projects',
-      description: 'Reached our first major milestone of completed projects'
+      year: '2025',
+      title: '1st Project',
+      description: 'Reached our first milestone of completed project'
     },
     {
-      year: '2021',
+      year: '2025',
       title: 'Team Expansion',
-      description: 'Grew to a team of 15+ skilled professionals'
-    },
-    {
-      year: '2022',
-      title: 'Global Reach',
-      description: 'Expanded services to clients across 20+ countries'
-    },
-    {
-      year: '2023',
-      title: 'Industry Recognition',
-      description: 'Received multiple awards for innovation and client satisfaction'
+      description: 'Grew to a team of skilled professionals'
     }
   ];
 
@@ -97,7 +88,7 @@ const About = () => {
       <section className="section-padding bg-gradient-primary text-white">
         <div className="container-width text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            About <span className="text-accent">TechSolutions</span>
+            About <span className="text-accent">Asian Digital World</span>
           </h1>
           <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
             We're a passionate team of digital experts dedicated to helping businesses thrive in the modern world.
@@ -114,7 +105,7 @@ const About = () => {
                 Our <span className="text-gradient">Mission</span>
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                At TechSolutions, we believe every business deserves access to world-class digital solutions. 
+                At Asian Digital World, we believe every business deserves access to world-class digital solutions. 
                 Our mission is to democratize technology by making enterprise-level web development, mobile apps, 
                 and digital marketing accessible to businesses of all sizes.
               </p>
@@ -122,10 +113,13 @@ const About = () => {
                 We're not just service providers – we're your digital transformation partners, committed to 
                 understanding your unique challenges and delivering solutions that drive real business results.
               </p>
-              <Link to="/contact" className="btn-primary">
-                Work With Us
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
+              {/* Fix: Wrap the button in a flex container for alignment */}
+              <div className="flex flex-row flex-wrap gap-4 items-center mt-4">
+                <Link to="/contact" className="btn-primary inline-flex items-center">
+                  Work With Us
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+              </div>
             </div>
             <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl flex items-center justify-center">
               <div className="text-center">
@@ -177,19 +171,18 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="flex flex-row flex-nowrap gap-4 overflow-x-auto justify-center items-stretch py-2">
             {team.map((member, index) => (
-              <div key={index} className="service-card text-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <div key={index} className="service-card text-center p-9 md:p-10 lg:p-10 w-80 md:w-72 lg:w-64 mx-auto shadow-sm bg-white rounded-lg">
+                <div className="w-36 h-36 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full mx-auto mb-5 flex items-center justify-center">
                   <img 
                     src={member.image} 
                     alt={member.name}
-                    className="w-28 h-28 rounded-full object-cover"
+                    className="w-32 h-32 rounded-full object-cover"
                   />
                 </div>
-                <h3 className="text-lg font-semibold mb-1">{member.name}</h3>
-                <p className="text-primary font-medium mb-3">{member.role}</p>
-                <p className="text-sm text-muted-foreground">{member.description}</p>
+                <h3 className="text-base font-semibold mb-1">{member.name}</h3>
+                <p className="text-xs text-primary font-medium mb-1">{member.role}</p>
               </div>
             ))}
           </div>
@@ -239,12 +232,12 @@ const About = () => {
           <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
             Let's discuss how we can help transform your business with our digital solutions.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="btn-accent">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+            <Link to="/contact" className="btn-accent inline-flex items-center">
               Start Your Project
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
-            <Link to="/services" className="btn-outline border-white text-white hover:bg-white hover:text-primary">
+            <Link to="/services" className="btn-outline border-white text-white hover:bg-white hover:text-primary inline-flex items-center">
               View Our Services
             </Link>
           </div>

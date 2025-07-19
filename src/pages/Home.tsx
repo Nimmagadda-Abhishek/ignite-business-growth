@@ -72,12 +72,12 @@ const Home = () => {
             <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-2xl mx-auto">
               We specialize in web development, app development, and digital marketing to elevate your business to new heights.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="btn-accent">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+              <Link to="/contact" className="btn-accent inline-flex items-center">
                 Get a Free Quote
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
-              <Link to="/services" className="btn-outline border-white text-white hover:bg-white hover:text-primary">
+              <Link to="/services" className="btn-outline border-white text-white hover:bg-white hover:text-primary inline-flex items-center">
                 View Our Services
               </Link>
             </div>

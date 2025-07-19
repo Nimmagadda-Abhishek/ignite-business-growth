@@ -37,12 +37,12 @@ const Footer = () => {
             <div className="space-y-4">
               <Link to="/" className="flex items-center space-x-2">
                 <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">IT</span>
+                  <span className="text-white font-bold text-xl">ADW</span>
                 </div>
-                <span className="text-xl font-bold">TechSolutions</span>
+                <span className="text-xl font-bold">Asian Digital World</span>
               </Link>
               <p className="text-gray-300 text-sm leading-relaxed">
-                Empowering businesses with scalable digital solutions. We specialize in web development, app development, and digital marketing.
+                Empowering businesses with scalable digital solutions. Asian Digital World specializes in web development, app development, and digital marketing.
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social) => (
@@ -136,10 +136,10 @@ const Footer = () => {
               © {currentYear} TechSolutions. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-gray-300 hover:text-primary transition-colors text-sm">
+              <Link to="/privacy" className="btn-outline border-white text-white hover:bg-white hover:text-primary inline-flex items-center text-sm">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-gray-300 hover:text-primary transition-colors text-sm">
+              <Link to="/terms" className="btn-outline border-white text-white hover:bg-white hover:text-primary inline-flex items-center text-sm">
                 Terms of Service
               </Link>
             </div>

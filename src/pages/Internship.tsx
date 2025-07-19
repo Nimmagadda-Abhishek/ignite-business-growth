@@ -52,8 +52,8 @@ const Internship = () => {
       icon: <Code className="w-8 h-8" />
     },
     {
-      id: "data-analysis",
-      title: "Data Analysis",
+      id: "data-analytics",
+      title: "Data Analytics",
       description: "Analyze data and create insights using statistical methods",
       icon: <Database className="w-8 h-8" />
     },
@@ -81,10 +81,9 @@ const Internship = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Basic validation
+
     if (!formData.name || !formData.email || !formData.phone || !formData.program || !formData.cv) {
       toast({
         title: "Error",
@@ -94,14 +93,46 @@ const Internship = () => {
       return;
     }
 
-    // In a real app, you would send this data to your backend
-    toast({
-      title: "Application Submitted!",
-      description: "Your internship application has been received. We'll contact you soon!",
-    });
+    const data = new FormData();
+    data.append("name", formData.name);
+    data.append("email", formData.email);
+    data.append("phone", formData.phone);
+    data.append("program", formData.program);
+    data.append("university", formData.university);
+    data.append("year_of_study", formData.year);
+    data.append("duration", formData.duration);
+    data.append("resume", formData.cv); // file
+    data.append("skills", formData.skills);
+    data.append("experience", formData.experience);
+    data.append("cover_letter", formData.coverLetter);
 
-    // Navigate to thank you page
-    navigate("/thank-you?type=internship");
+    try {
+      const res = await fetch("http://localhost:3001/api/internship_submissions", {
+        method: "POST",
+        body: data
+      });
+
+      if (res.ok) {
+        toast({
+          title: "Application Submitted!",
+          description: "Your internship application has been received. We'll contact you soon!",
+        });
+        navigate("/thank-you?type=internship");
+      } else {
+        const err = await res.json();
+        toast({
+          title: "Submission Failed",
+          description: err.message || "Something went wrong. Please try again.",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: "Network error. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
@@ -250,6 +281,7 @@ const Internship = () => {
                 <Label htmlFor="cv">Upload CV/Resume *</Label>
                 <Input
                   id="cv"
+                  name="resume"
                   type="file"
                   onChange={handleFileChange}
                   accept=".pdf,.doc,.docx"

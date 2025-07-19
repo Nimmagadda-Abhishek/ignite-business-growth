@@ -209,11 +209,11 @@ const Portfolio = () => {
           <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
             Let's create something amazing together. Contact us to discuss your vision.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" className="btn-accent">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+            <a href="/contact" className="btn-accent inline-flex items-center">
               Start Your Project
             </a>
-            <a href="/services" className="btn-outline border-white text-white hover:bg-white hover:text-primary">
+            <a href="/services" className="btn-outline border-white text-white hover:bg-white hover:text-primary inline-flex items-center">
               View Our Services
             </a>
           </div>

@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import Internship from "./pages/Internship";
 import ThankYou from "./pages/ThankYou";
 import NotFound from "./pages/NotFound";
+import AdminApp from "./admin/App";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="internship" element={<Internship />} />
             <Route path="thank-you" element={<ThankYou />} />
           </Route>
+          <Route path="admin/*" element={<AdminApp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

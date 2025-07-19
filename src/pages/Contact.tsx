@@ -332,17 +332,17 @@ const Contact = () => {
           <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
             Don't wait! Contact us today and let's bring your vision to life.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
             <a
               href="https://wa.me/1234567890"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-accent"
+              className="btn-accent inline-flex items-center"
             >
               <MessageCircle className="w-5 h-5 mr-2" />
               WhatsApp Chat
             </a>
-            <a href="tel:+1234567890" className="btn-outline border-white text-white hover:bg-white hover:text-primary">
+            <a href="tel:+1234567890" className="btn-outline border-white text-white hover:bg-white hover:text-primary inline-flex items-center">
               <Phone className="w-5 h-5 mr-2" />
               Call Now
             </a>

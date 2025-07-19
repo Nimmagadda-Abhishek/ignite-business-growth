@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,10 +25,13 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">IT</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">TechSolutions</span>
+            <img
+              src={logo}
+              alt="Asian Digital World Logo"
+              className="w-12 h-12 object-contain"
+              style={{ background: 'transparent' }}
+            />
+            <span className="text-xl font-bold text-foreground">Asian Digital World</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -54,7 +58,7 @@ const Header = () => {
             </a>
             <Link
               to="/contact"
-              className="btn-primary text-sm py-2 px-6"
+              className="btn-primary text-sm py-2 px-6 inline-flex items-center"
             >
               Get Quote
             </Link>
@@ -91,7 +95,7 @@ const Header = () => {
               <div className="pt-4 border-t border-border">
                 <Link
                   to="/contact"
-                  className="btn-primary text-sm py-2 px-6 inline-block"
+                  className="btn-primary text-sm py-2 px-6 inline-block inline-flex items-center"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Get Quote

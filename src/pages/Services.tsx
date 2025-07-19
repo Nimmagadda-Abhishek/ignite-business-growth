@@ -281,12 +281,12 @@ const Services = () => {
           <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
             Schedule a free consultation to discuss your project requirements
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="btn-accent">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+            <Link to="/contact" className="btn-accent inline-flex items-center">
               Schedule Consultation
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
-            <Link to="/portfolio" className="btn-outline border-white text-white hover:bg-white hover:text-primary">
+            <Link to="/portfolio" className="btn-outline border-white text-white hover:bg-white hover:text-primary inline-flex items-center">
               View Our Work
             </Link>
           </div>
