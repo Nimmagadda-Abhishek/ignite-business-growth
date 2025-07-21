@@ -1,14 +1,16 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:3001/api";
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://asian-digital-world.onrender.com/api',
+});
 
 function authHeader() {
   const token = localStorage.getItem("admin_token");
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
-export const getAll = (resource) => axios.get(`${API_BASE}/${resource}`, { headers: authHeader() }).then(res => res.data);
-export const getOne = (resource, id) => axios.get(`${API_BASE}/${resource}/${id}`, { headers: authHeader() }).then(res => res.data);
-export const createOne = (resource, data) => axios.post(`${API_BASE}/${resource}`, data, { headers: authHeader() });
-export const updateOne = (resource, id, data) => axios.put(`${API_BASE}/${resource}/${id}`, data, { headers: authHeader() });
-export const deleteOne = (resource, id) => axios.delete(`${API_BASE}/${resource}/${id}`, { headers: authHeader() }); 
+export const getAll = (resource) => api.get(`/${resource}`, { headers: authHeader() }).then(res => res.data);
+export const getOne = (resource, id) => api.get(`/${resource}/${id}`, { headers: authHeader() }).then(res => res.data);
+export const createOne = (resource, data) => api.post(`/${resource}`, data, { headers: authHeader() });
+export const updateOne = (resource, id, data) => api.put(`/${resource}/${id}`, data, { headers: authHeader() });
+export const deleteOne = (resource, id) => api.delete(`/${resource}/${id}`, { headers: authHeader() }); 

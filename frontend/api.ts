@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:3001/api";
+const API_BASE = "https://asian-digital-world.onrender.com/api";
 
 function authHeader() {
   const token = localStorage.getItem("admin_token");

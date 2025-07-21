@@ -9,6 +9,12 @@ export default defineConfig(({ mode, command }) => {
     server: {
       host: "::",
       port: 8080,
+      proxy: {
+        '/api': {
+          target: 'https://asian-digital-world.onrender.com',
+          changeOrigin: true,
+        },
+      },
     },
     plugins: [
       react(),
