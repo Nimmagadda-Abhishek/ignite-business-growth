@@ -20,7 +20,27 @@ import portfolioRouter from './routes/portfolio.js';
 import path from 'path';
 
 const app = express();
-app.use(cors());
+
+// CORS Configuration
+const allowedOrigins = [
+  'http://localhost:5173', // Admin panel local dev
+  'http://localhost:5174', // Frontend local dev (if different port)
+  'https://your-deployed-frontend.com' // Replace with your actual frontend domain
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api/services', servicesRouter);
