@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://asian-digital-world.onrender.com/api',
+  baseURL: "https://ignite-business-growth.vercel.app/api",
 });
 
 function authHeader() {
-  const token = localStorage.getItem("admin_token");
+  const token = localStorage.getItem("token");
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
