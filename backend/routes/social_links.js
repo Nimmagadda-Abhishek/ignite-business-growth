@@ -4,8 +4,8 @@ import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Get all social links
-router.get('/', authenticateToken, async (req, res) => {
+// Get all social links (public)
+router.get('/', async (req, res) => {
   const [rows] = await db.query('SELECT * FROM social_links');
   res.json(rows);
 });

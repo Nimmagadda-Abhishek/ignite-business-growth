@@ -4,8 +4,8 @@ import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Get all footer links
-router.get('/', authenticateToken, async (req, res) => {
+// Get all footer links (public)
+router.get('/', async (req, res) => {
   const [rows] = await db.query('SELECT * FROM footer_links');
   res.json(rows);
 });

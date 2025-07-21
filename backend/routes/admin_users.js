@@ -70,4 +70,22 @@ router.post('/login', async (req, res) => {
   res.json({ token });
 });
 
+// Analytics summary endpoint
+router.get('/analytics/summary', authenticateToken, async (req, res) => {
+  const [[{ internship_count }]] = await db.query('SELECT COUNT(*) as internship_count FROM internship_submissions');
+  const [[{ contact_count }]] = await db.query('SELECT COUNT(*) as contact_count FROM contact_submissions');
+  const [[{ quote_count }]] = await db.query('SELECT COUNT(*) as quote_count FROM quote_submissions');
+  const [[{ services_count }]] = await db.query('SELECT COUNT(*) as services_count FROM services');
+  const [[{ testimonials_count }]] = await db.query('SELECT COUNT(*) as testimonials_count FROM testimonials');
+  const [[{ portfolio_count }]] = await db.query('SELECT COUNT(*) as portfolio_count FROM portfolio');
+  res.json({
+    internship_count,
+    contact_count,
+    quote_count,
+    services_count,
+    testimonials_count,
+    portfolio_count
+  });
+});
+
 export default router; 

@@ -4,8 +4,8 @@ import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Get all contact info
-router.get('/', authenticateToken, async (req, res) => {
+// Get all contact info (public)
+router.get('/', async (req, res) => {
   const [rows] = await db.query('SELECT * FROM contact_info');
   res.json(rows);
 });

@@ -15,6 +15,8 @@ import authRouter from './routes/auth.js';
 import contactSubmissionsRouter from './routes/contact_submissions.js';
 import quoteSubmissionsRouter from './routes/quote_submissions.js';
 import internshipSubmissionsRouter from './routes/internship_submissions.js';
+import testimonialsRouter from './routes/testimonials.js';
+import portfolioRouter from './routes/portfolio.js';
 import path from 'path';
 
 const app = express();
@@ -35,6 +37,8 @@ app.use('/api/auth', authRouter);
 app.use('/api/contact_submissions', contactSubmissionsRouter);
 app.use('/api/quote_submissions', quoteSubmissionsRouter);
 app.use('/api/internship_submissions', internshipSubmissionsRouter);
+app.use('/api/testimonials', testimonialsRouter);
+app.use('/api/portfolio', portfolioRouter);
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 const PORT = process.env.PORT || 3001;

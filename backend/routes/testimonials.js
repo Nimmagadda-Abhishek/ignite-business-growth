@@ -4,8 +4,8 @@ import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Get all testimonials
-router.get('/', authenticateToken, async (req, res) => {
+// Get all testimonials (public)
+router.get('/', async (req, res) => {
   const [rows] = await db.query('SELECT * FROM testimonials');
   res.json(rows);
 });
