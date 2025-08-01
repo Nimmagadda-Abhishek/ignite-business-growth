@@ -18,11 +18,38 @@ import internshipSubmissionsRouter from './routes/internship_submissions.js';
 import testimonialsRouter from './routes/testimonials.js';
 import portfolioRouter from './routes/portfolio.js';
 import path from 'path';
+import pool from './db.js';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// Health check endpoint
+app.get('/', (req, res) => {
+  res.json({ message: 'Backend API is running', status: 'OK' });
+});
+
+app.get('/health', async (req, res) => {
+  try {
+    // Test database connection
+    await pool.query('SELECT 1');
+    res.json({ 
+      message: 'Backend API is healthy', 
+      status: 'OK', 
+      database: 'Connected',
+      timestamp: new Date().toISOString() 
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      message: 'Backend API is running but database connection failed', 
+      status: 'ERROR', 
+      database: 'Disconnected',
+      error: error.message,
+      timestamp: new Date().toISOString() 
+    });
+  }
+});
 
 app.use('/api/services', servicesRouter);
 app.use('/api/additional_services', additionalServicesRouter);
@@ -43,6 +70,19 @@ app.use('/api/portfolio', portfolioRouter);
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 const PORT = process.env.PORT || 3001;
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({ error: 'Internal server error', message: err.message });
+});
+
+// 404 handler
+app.use('*', (req, res) => {
+  res.status(404).json({ error: 'Route not found', path: req.originalUrl });
+});
+
 app.listen(PORT, () => {
   console.log(`Backend API running on port ${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 }); 
