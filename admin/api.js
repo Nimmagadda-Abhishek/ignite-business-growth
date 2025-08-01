@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://ignite-business-growth-yqjx.vercel.app/",
+  baseURL: "https://ignite-business-growth.onrender.com/",
 });
 
 function authHeader() {
