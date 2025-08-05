@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ExternalLink, Code, Smartphone, TrendingUp, Filter } from 'lucide-react';
-import { getAll } from '../api';
+import { getAll } from '../api.ts';
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('all');

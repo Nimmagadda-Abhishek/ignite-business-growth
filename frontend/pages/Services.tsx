@@ -14,7 +14,7 @@ import {
   ArrowRight,
   CheckCircle
 } from 'lucide-react';
-import { getAll } from '../api';
+import { getAll } from '../api.ts';
 
 interface Service {
   id: number;

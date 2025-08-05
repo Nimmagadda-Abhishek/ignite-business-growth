@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import pool, { testConnection } from './db.js';
 
 import servicesRouter from './routes/services.js';
 import additionalServicesRouter from './routes/additional_services.js';
@@ -18,11 +19,18 @@ import internshipSubmissionsRouter from './routes/internship_submissions.js';
 import testimonialsRouter from './routes/testimonials.js';
 import portfolioRouter from './routes/portfolio.js';
 import path from 'path';
-import pool from './db.js';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://your-frontend-domain.com' // Add your frontend deployment URL here
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+}));
 app.use(express.json());
 
 // Health check endpoint
@@ -30,23 +38,53 @@ app.get('/', (req, res) => {
   res.json({ message: 'Backend API is running', status: 'OK' });
 });
 
+// Enhanced health check endpoint
 app.get('/health', async (req, res) => {
   try {
-    // Test database connection
-    await pool.query('SELECT 1');
+    const isConnected = await testConnection();
+    if (!isConnected) {
+      throw new Error('Database connection test failed');
+    }
+
+    const [serverInfo] = await pool.query('SELECT VERSION() as version');
+    
     res.json({ 
-      message: 'Backend API is healthy', 
-      status: 'OK', 
-      database: 'Connected',
-      timestamp: new Date().toISOString() 
+      status: 'OK',
+      database: {
+        connected: true,
+        version: serverInfo[0].version
+      },
+      api: {
+        version: process.env.npm_package_version || '1.0.0',
+        environment: process.env.NODE_ENV || 'development'
+      },
+      timestamp: new Date().toISOString()
     });
   } catch (error) {
-    res.status(500).json({ 
-      message: 'Backend API is running but database connection failed', 
-      status: 'ERROR', 
-      database: 'Disconnected',
-      error: error.message,
-      timestamp: new Date().toISOString() 
+    res.status(503).json({ 
+      status: 'ERROR',
+      database: {
+        connected: false,
+        error: error.message
+      },
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+app.get('/api/test-db', async (req, res) => {
+  try {
+    const [result] = await pool.query('SELECT 1');
+    res.json({
+      success: true,
+      message: 'Database connection successful',
+      result
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Database connection failed',
+      error: error.message
     });
   }
 });
@@ -85,4 +123,4 @@ app.use('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Backend API running on port ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-}); 
+});
